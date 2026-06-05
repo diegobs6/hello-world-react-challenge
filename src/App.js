@@ -5,8 +5,9 @@ function App() {
   const [font, setFont] = useState("Roboto");
   const [isBold, setIsBold] = useState(false);
   const [textColor, setTextColor] = useState("#000000");
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   return (
-    <div className="container">
+    <div className="container" style= {{ backgroundColor: backgroundColor}}>
       <h1 style={{ 
         fontFamily: font,
         fontWeight: isBold ? "bold" : "normal",
@@ -25,6 +26,10 @@ function App() {
       <input
         type="color"
         onChange={(e) => setTextColor(e.target.value)}
+        />
+      <input
+        type="color"
+        onChange={(e) => setBackgroundColor(e.target.value)}
         />
     </div>
   );
