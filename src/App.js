@@ -6,13 +6,17 @@ function App() {
   const [isBold, setIsBold] = useState(false);
   const [textColor, setTextColor] = useState("#000000");
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+  const [text, setText] = useState("Hello World");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tempText, setTempText] = useState("");
   return (
+    <>
     <div className="container" style= {{ backgroundColor: backgroundColor}}>
       <h1 style={{ 
         fontFamily: font,
         fontWeight: isBold ? "bold" : "normal",
         color: textColor
-      }}>Hello World</h1>
+      }}>{text}</h1>
       <select onChange={(e) => setFont(e.target.value)}>
         <option value= "Roboto">Roboto</option>
         <option value= "Playfair Display">Playfair Display</option>
@@ -31,7 +35,26 @@ function App() {
         type="color"
         onChange={(e) => setBackgroundColor(e.target.value)}
         />
+      </div>
+      <button className= "edit-button" onClick={() => setIsModalOpen(true)}>
+        ✏️
+      </button>
+      {isModalOpen && (
+      <div className='modal'>
+        <p>Editar texto</p>
+        <input
+          type="text"
+          value={tempText}
+          onChange={(e) => setTempText(e.target.value)}
+        />
+        <button onClick={() => {
+          setText(tempText);
+          setIsModalOpen(false);
+      }}>Confirmar</button>
+      <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
     </div>
+      )}
+    </>
   );
 }
 
