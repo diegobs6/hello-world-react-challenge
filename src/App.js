@@ -4,11 +4,13 @@ import { useState } from 'react';
 function App() {
   const [font, setFont] = useState("Roboto");
   const [isBold, setIsBold] = useState(false);
+  const [textColor, setTextColor] = useState("#000000");
   return (
     <div className="container">
       <h1 style={{ 
         fontFamily: font,
-        fontWeight: isBold ? "bold" : "normal"
+        fontWeight: isBold ? "bold" : "normal",
+        color: textColor
       }}>Hello World</h1>
       <select onChange={(e) => setFont(e.target.value)}>
         <option value= "Roboto">Roboto</option>
@@ -20,6 +22,10 @@ function App() {
       <button onClick={() => setIsBold(!isBold)}>
         {isBold ? "Sacar negrita" : "Negrita"}
       </button>
+      <input
+        type="color"
+        onChange={(e) => setTextColor(e.target.value)}
+        />
     </div>
   );
 }
